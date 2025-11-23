@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Kiss of the Sun – Demo</title>
+  <!-- House of Cards font from Typekit -->
+  <link rel="stylesheet" href="https://use.typekit.net/yyy7lby.css">
   <style>
     :root {
       --classic-blue: #0F4C81;
@@ -19,26 +21,38 @@
     }
     .frame-outer {
       background: var(--ivory-fog);
-      padding: 58px 0 58px 0;
+      padding: 64px 0 64px 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
     }
-    /* Framed image container for deep "matte" effect */
     .hotspot-bg-animate-container {
-      position: relative;
       background: var(--ivory-fog);
-      border-radius: 28px;
-      box-shadow: 0 6px 40px 4px #ece6dd, 0 0 0 1px #ece6dd;
+      border-radius: 32px;
+      box-shadow: 0 8px 40px 8px #ece6dd;
       overflow: visible;
       margin: 0 auto;
-      padding: 40px 50px 80px 50px; /* big top/side/bottom padding for frame and hotspots row! */
-      width: 100%;
+      padding: 46px 50px 104px 50px; /* generous matte */
       max-width: 1100px;
-      min-width: 320px;
+      min-width: 340px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    /* The main image should never be cropped horizontally */
+    /* Title styling */
+    .hero-title {
+      font-family: "house-of-cards", serif;
+      color: var(--classic-blue);
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-align: center;
+      margin-bottom: 32px;
+      text-shadow: 0 2px 8px #e1e1e1;
+      width: 100%;
+    }
     .bg-main-img {
       display: block;
       width: 100%;
@@ -47,31 +61,33 @@
       object-fit: contain;
       border-radius: 22px;
       margin: 0 auto;
-      box-shadow: 0 3px 18px 0 #d0cac1;
-      background: #232226;
+      box-shadow: 0 3px 18px 0 #ded8ce;
+      background: var(--ivory-fog);
     }
 
-    /* Hotspots row is now absolutely under the image, but within the frame */
+    /* HOTSPOTS row, always in the matte below the image */
     .hotspots-row {
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 28px;
       width: 100%;
+      max-width: 1000px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      pointer-events: none; /* allow child buttons pointer events */
+      align-items: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 34px;
+      padding: 0 54px;
       z-index: 2;
-      padding: 0 36px;
-      box-sizing: border-box;
+      pointer-events: none;
     }
+    /* For visual alignment with the image's thirds: */
     .hotspot {
       pointer-events: auto;
       width: 54px; height: 54px;
       background: var(--tomato-red);
-      border: 0; border-radius: 50%;
+      border: none; border-radius: 50%;
       outline: none; cursor: pointer;
-      box-shadow: 0 2px 14px rgba(40,20,20,.14);
+      box-shadow: 0 2px 14px rgba(40,20,20,.15);
       transition: background .2s;
       display: flex; align-items: center; justify-content: center;
       margin: 0;
@@ -79,7 +95,7 @@
     }
     .hotspot .pulse {
       width: 18px; height: 18px;
-      background: #FFF;
+      background: #fff;
       border-radius: 50%;
       animation: pulseit 1.25s infinite;
     }
@@ -90,21 +106,9 @@
     }
     .hotspot:hover { background: var(--golden-ochre); }
     .hotspot.visited { background: var(--classic-blue); }
-
-    /* Place hotspots: left, 2 in middle, right. Use flexbox for two middle ones closer together */
-    .hotspots-row .column {
-      flex: 1 1 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-width: 0;
-    }
-    .hotspots-row .column.middle {
-      flex: 2 2 0;
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-    }
+    .hotspot.h1 { align-self: flex-start; }
+    .hotspot.h2, .hotspot.h3 { margin: 0 10px; }
+    .hotspot.h4 { align-self: flex-end; }
 
     /* Modal presentation, preserve blue border */
     .modal-backdrop {
@@ -120,7 +124,7 @@
       transform: translate(-50%,-50%);
       border-radius: 18px;
       border: 4px solid var(--classic-blue);
-      box-shadow: 0 12px 48px 2px rgba(44,24,22,0.19), 0 0 0 4px #d5eaff60;
+      box-shadow: 0 12px 48px 2px #c9e3f8, 0 0 0 4px #d5eaff60;
       background: var(--ivory-fog);
       color: var(--classic-blue);
       font-family: 'house-of-cards', Arial, serif;
@@ -181,43 +185,37 @@
       box-shadow: 0 2px 12px #0009;
       background: #eee;
     }
-
     @media (max-width:1200px) {
       .hotspot-bg-animate-container {
         max-width: 99vw;
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
     }
     @media (max-width:850px) {
       .hotspot-bg-animate-container {
         max-width: 99vw;
         border-radius: 18px;
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 2vw;
+        padding-right: 2vw;
       }
-      .bg-main-img { border-radius: 14px; }
       .frame-outer { padding: 2vw 0 3vw 0; }
-      .hotspots-row .column.middle { gap: 22px;}
+      .hero-title { font-size: 6vw; }
+      .hotspots-row { padding: 0 10vw; }
     }
   </style>
 </head>
 <body>
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
+      <div class="hero-title">Kiss of the Strawberry Moon</div>
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db81af315c44d4aaa91cb/1763555355221/Kiss+of+the+Strawberry+Moon.png"
         alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
       <div class="hotspots-row">
-        <div class="column left">
-          <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
-        </div>
-        <div class="column middle">
-          <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
-          <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
-        </div>
-        <div class="column right">
-          <button class="hotspot h4" data-modal="modal4"><span class="pulse"></span></button>
-        </div>
+        <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
+        <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
+        <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
+        <button class="hotspot h4" data-modal="modal4"><span class="pulse"></span></button>
       </div>
     </div>
   </div>
