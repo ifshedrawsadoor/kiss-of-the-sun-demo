@@ -31,9 +31,8 @@
       background: var(--ivory-fog);
       border-radius: 32px;
       box-shadow: 0 8px 40px 8px #ece6dd;
-      overflow: visible;
       margin: 0 auto;
-      padding: 46px 50px 104px 50px; /* generous matte */
+      padding: 46px 50px 104px 50px;
       max-width: 1100px;
       min-width: 340px;
       position: relative;
@@ -41,7 +40,6 @@
       flex-direction: column;
       align-items: center;
     }
-    /* Title styling */
     .hero-title {
       font-family: "house-of-cards", serif;
       color: var(--classic-blue);
@@ -50,13 +48,13 @@
       letter-spacing: 1.5px;
       text-align: center;
       margin-bottom: 32px;
-      text-shadow: 0 2px 8px #e1e1e1;
       width: 100%;
     }
     .bg-main-img {
       display: block;
       width: 100%;
       max-width: 1000px;
+      min-width: 320px;
       height: auto;
       object-fit: contain;
       border-radius: 22px;
@@ -64,23 +62,11 @@
       box-shadow: 0 3px 18px 0 #ded8ce;
       background: var(--ivory-fog);
     }
-
-    /* HOTSPOTS row, always in the matte below the image */
-    .hotspots-row {
-      width: 100%;
-      max-width: 1000px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .hotspots-absolute {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 34px;
-      padding: 0 54px;
-      z-index: 2;
+      left: 0; top: 0; width: 100%; height: 100%;
       pointer-events: none;
     }
-    /* For visual alignment with the image's thirds: */
     .hotspot {
       pointer-events: auto;
       width: 54px; height: 54px;
@@ -92,6 +78,8 @@
       display: flex; align-items: center; justify-content: center;
       margin: 0;
       z-index: 3;
+      position: absolute;
+      /* These will be overridden for each hotspot below */
     }
     .hotspot .pulse {
       width: 18px; height: 18px;
@@ -106,11 +94,23 @@
     }
     .hotspot:hover { background: var(--golden-ochre); }
     .hotspot.visited { background: var(--classic-blue); }
-    .hotspot.h1 { align-self: flex-start; }
-    .hotspot.h2, .hotspot.h3 { margin: 0 10px; }
-    .hotspot.h4 { align-self: flex-end; }
+    /* Position each hotspot under each third */
+    .hotspot.h1 { left: 16.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h2 { left: 49.9%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h3 { left: 66.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h4 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    @media (max-width:1100px) {
+      .hotspot-bg-animate-container { padding-left: 3vw; padding-right: 3vw; }
+      .bg-main-img { max-width: 95vw; }
+    }
+    @media (max-width: 900px) {
+      .frame-outer { padding: 2vw 0 2vw 0; }
+      .hero-title { font-size: 6vw; }
+      .hotspot-bg-animate-container { padding-left: 2vw; padding-right: 2vw; padding-top: 32px; padding-bottom: 84px;}
+      .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 { top: calc(100% - 54px);}
+    }
 
-    /* Modal presentation, preserve blue border */
+    /* MODALS */
     .modal-backdrop {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -185,24 +185,6 @@
       box-shadow: 0 2px 12px #0009;
       background: #eee;
     }
-    @media (max-width:1200px) {
-      .hotspot-bg-animate-container {
-        max-width: 99vw;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-    }
-    @media (max-width:850px) {
-      .hotspot-bg-animate-container {
-        max-width: 99vw;
-        border-radius: 18px;
-        padding-left: 2vw;
-        padding-right: 2vw;
-      }
-      .frame-outer { padding: 2vw 0 3vw 0; }
-      .hero-title { font-size: 6vw; }
-      .hotspots-row { padding: 0 10vw; }
-    }
   </style>
 </head>
 <body>
@@ -211,7 +193,7 @@
       <div class="hero-title">Kiss of the Strawberry Moon</div>
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db81af315c44d4aaa91cb/1763555355221/Kiss+of+the+Strawberry+Moon.png"
         alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
-      <div class="hotspots-row">
+      <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
         <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
         <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
