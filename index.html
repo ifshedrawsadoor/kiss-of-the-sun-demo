@@ -9,66 +9,73 @@
       --classic-blue: #0F4C81;
       --golden-ochre: #FAD36B;
       --tomato-red: #FF6347;
-      --sap-green: #2E6F40;
       --ivory-fog: #F9F6EE;
     }
     html, body {
       margin: 0;
       padding: 0;
       background: var(--ivory-fog);
-      height: 100%;
       min-height: 100vh;
     }
-    /* Outer shadow framing */
     .frame-outer {
       background: var(--ivory-fog);
-      padding: 58px 0 68px 0;
+      padding: 58px 0 58px 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
     }
+    /* Framed image container for deep "matte" effect */
     .hotspot-bg-animate-container {
       position: relative;
-      width: 1100px;
-      max-width: 95vw;
       background: var(--ivory-fog);
-      border-radius: 26px;
-      box-shadow: 0 10px 36px 8px #e7e2d7, 0 0 0 1px #ece6dd;
+      border-radius: 28px;
+      box-shadow: 0 6px 40px 4px #ece6dd, 0 0 0 1px #ece6dd;
       overflow: visible;
       margin: 0 auto;
-      padding: 36px 0 90px 0;
+      padding: 40px 50px 80px 50px; /* big top/side/bottom padding for frame and hotspots row! */
+      width: 100%;
+      max-width: 1100px;
+      min-width: 320px;
     }
+    /* The main image should never be cropped horizontally */
     .bg-main-img {
       display: block;
       width: 100%;
-      max-width: 100%;
+      max-width: 1000px;
       height: auto;
       object-fit: contain;
       border-radius: 22px;
       margin: 0 auto;
-      box-shadow: 0 3px 22px 0 #d0cac1;
+      box-shadow: 0 3px 18px 0 #d0cac1;
       background: #232226;
     }
-    .hero-expand .bg-main-img,
-    .hero-expand.hotspot-bg-animate-container {
-      height: 96vh !important;
-      min-height: 580px;
-    }
 
-    /* Hotspots in custom locations under image */
-    .hotspot {
+    /* Hotspots row is now absolutely under the image, but within the frame */
+    .hotspots-row {
       position: absolute;
+      left: 0; right: 0;
+      bottom: 28px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none; /* allow child buttons pointer events */
+      z-index: 2;
+      padding: 0 36px;
+      box-sizing: border-box;
+    }
+    .hotspot {
+      pointer-events: auto;
       width: 54px; height: 54px;
       background: var(--tomato-red);
-      border: 0;
-      border-radius: 50%;
+      border: 0; border-radius: 50%;
       outline: none; cursor: pointer;
-      box-shadow: 0 2px 15px rgba(40,20,20,.14);
+      box-shadow: 0 2px 14px rgba(40,20,20,.14);
       transition: background .2s;
       display: flex; align-items: center; justify-content: center;
       margin: 0;
-      z-index: 2;
+      z-index: 3;
     }
     .hotspot .pulse {
       width: 18px; height: 18px;
@@ -83,12 +90,23 @@
     }
     .hotspot:hover { background: var(--golden-ochre); }
     .hotspot.visited { background: var(--classic-blue); }
-    .hotspot.h1 { left: 18.5%; top: calc(100% - 32px); transform: translate(-50%, 0);}
-    .hotspot.h2 { left: 49.5%; top: calc(100% - 65px); transform: translate(-50%, 0);}
-    .hotspot.h3 { left: 49.5%; top: calc(100% - 5px); transform: translate(-50%, 0);}
-    .hotspot.h4 { left: 80.5%; top: calc(100% - 32px); transform: translate(-50%, 0);}
-    /* Adjust those left values for perfect visual alignment! */
 
+    /* Place hotspots: left, 2 in middle, right. Use flexbox for two middle ones closer together */
+    .hotspots-row .column {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+    }
+    .hotspots-row .column.middle {
+      flex: 2 2 0;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    /* Modal presentation, preserve blue border */
     .modal-backdrop {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -165,21 +183,22 @@
     }
 
     @media (max-width:1200px) {
-      .hotspot-bg-animate-container, .modal.large {
-        width: 98vw;
-        max-width: 98vw;
+      .hotspot-bg-animate-container {
+        max-width: 99vw;
+        padding-left: 12px;
+        padding-right: 12px;
       }
     }
     @media (max-width:850px) {
-      .hotspot-bg-animate-container, .modal.large {
-        width: 99vw;
+      .hotspot-bg-animate-container {
         max-width: 99vw;
         border-radius: 18px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
       .bg-main-img { border-radius: 14px; }
-      .frame-outer { padding: 2vw 0 9vw 0; }
-      .hotspot.h1, .hotspot.h4 { left: 22%; top: calc(100% - 42px);}
-      .hotspot.h2, .hotspot.h3 { left: 50%; }
+      .frame-outer { padding: 2vw 0 3vw 0; }
+      .hotspots-row .column.middle { gap: 22px;}
     }
   </style>
 </head>
@@ -188,10 +207,18 @@
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db81af315c44d4aaa91cb/1763555355221/Kiss+of+the+Strawberry+Moon.png"
         alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
-      <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
-      <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
-      <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
-      <button class="hotspot h4" data-modal="modal4"><span class="pulse"></span></button>
+      <div class="hotspots-row">
+        <div class="column left">
+          <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
+        </div>
+        <div class="column middle">
+          <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
+          <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
+        </div>
+        <div class="column right">
+          <button class="hotspot h4" data-modal="modal4"><span class="pulse"></span></button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal-backdrop"></div>
