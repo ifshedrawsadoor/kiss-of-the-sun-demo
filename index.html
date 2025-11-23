@@ -5,17 +5,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Kiss of the Sun – Demo</title>
   <style>
+    :root {
+      --classic-blue: #0F4C81;
+      --golden-ochre: #FAD36B;
+      --tomato-red: #FF6347;
+      --sap-green: #2E6F40;
+      --ivory-fog: #F9F6EE;
+    }
     html, body {
       margin: 0;
       padding: 0;
-      background: #fffff0;
+      background: var(--ivory-fog);
       height: 100%;
       min-height: 100vh;
     }
-
-    /* Double-layered frame effect */
     .frame-outer {
-      background: #fffff0;
+      background: var(--ivory-fog);
       padding: 40px 0;
       min-height: 100vh;
       display: flex;
@@ -23,38 +28,40 @@
       align-items: flex-start;
     }
     .frame-inner {
-      background: #fffff0;
+      background: var(--ivory-fog);
       border-radius: 28px;
       box-shadow:
-        0 4px 32px 8px rgba(100,80,50,0.07),
-        0 0 0 12px #fffff0;
-      padding: 0;
+        0 4px 32px 8px rgba(100,80,50,0.09);
+      padding: 0 0 28px 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      border: 4px solid var(--classic-blue); /* Classic Blue border */
+      position: relative;
     }
-
     .hotspot-bg-animate-container {
       position: relative;
-      width: 1100px; /* Ensures image is fully visible at max viewport, adjust as needed */
-      max-width: 100vw;
-      background: #fffff0;
+      width: 1100px;
+      max-width: 98vw;
+      background: var(--ivory-fog);
       border-radius: 20px;
       box-shadow:
-        0 8px 36px 3px rgba(44,24,22,0.26),
-        0 0 0 10px #fff8;
+        0 8px 36px 3px rgba(44,24,22,0.16),
+        0 0 0 12px #fff8;
       overflow: hidden;
+      margin-bottom: 34px; /* for space below image for hotspots */
     }
     .bg-main-img {
       display: block;
       width: 100%;
       height: 47vh;
-      max-height: 520px;
+      min-height: 340px;
+      max-height: 530px;
       object-fit: contain;
       border-radius: 20px;
       margin: 0;
       background: #232226;
-      box-shadow: 0 2px 10px rgba(20,20,20,.15);
+      box-shadow: 0 2px 10px rgba(20,20,20,.13);
     }
     .hero-expand .bg-main-img,
     .hero-expand.hotspot-bg-animate-container {
@@ -62,15 +69,29 @@
       min-height: 580px;
     }
 
+    /* New Hotspots Row */
+    .hotspots-row {
+      width: 97%;
+      max-width: 1040px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      margin-top: 8px;
+      gap: 0;
+    }
+
     .hotspot {
-      position: absolute;
+      position: relative;
       width: 54px; height: 54px;
-      background: #FF6347; /* red/orange */
-      border: 0; border-radius: 50%;
+      background: var(--tomato-red);
+      border: 0;
+      border-radius: 50%;
       outline: none; cursor: pointer;
-      box-shadow: 0 2px 16px rgba(40,20,20,.15);
+      box-shadow: 0 2px 14px rgba(40,20,20,.13);
       transition: background .2s;
       display: flex; align-items: center; justify-content: center;
+      margin: 0;
     }
     .hotspot .pulse {
       width: 18px; height: 18px;
@@ -83,14 +104,11 @@
       70% { box-shadow: 0 0 0 18px #f9642500, 0 0 0 8px #fff2; }
       100% { box-shadow: 0 0 0 0px #f9642500, 0 0 0 0px #fff2; }
     }
-    .hotspot:hover { background: #FAD36B; }
-    .hotspot.visited { background: #34558B; }
+    .hotspot:hover { background: var(--golden-ochre); }
+    .hotspot.visited { background: var(--classic-blue); }
 
-    /* Hotspot locations: adjust these if needed to better fit new frame/image size */
-    .hotspot.h1 { top: 52%; left: 13%; }
-    .hotspot.h2 { top: 39%; left: 48%; }
-    .hotspot.h3 { top: 61%; left: 48%; }
-    .hotspot.h4 { top: 52%; left: 94%; } /* moved further right so it's inside image */
+    /* Remove old absolute placements */
+    /* .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 {} */
 
     .modal-backdrop {
       position: fixed;
@@ -104,13 +122,13 @@
       top: 50%; left: 50%;
       transform: translate(-50%,-50%);
       border-radius: 18px;
-      box-shadow: 0 12px 48px 2px rgba(44,24,22,0.26), 0 0 0 4px #fffff0;
-      background: #fffff0;
-      color: #34558B;
+      box-shadow: 0 12px 48px 2px rgba(44,24,22,0.19), 0 0 0 4px var(--classic-blue);
+      background: var(--ivory-fog);
+      color: var(--classic-blue);
       font-family: 'house-of-cards', Arial, serif;
       min-width: 340px;
       box-sizing: border-box;
-      padding: 20px 12px 10px 12px;
+      padding: 20px 8px 10px 8px;
       max-width: 98vw;
       max-height: 95vh;
       overflow: auto;
@@ -124,7 +142,7 @@
     }
     .modal-close {
       position: absolute; top: 12px; right: 28px;
-      font-size: 2em; color: #34558B;
+      font-size: 2em; color: var(--classic-blue);
       cursor: pointer; z-index: 10001;
       font-weight: bold; border: none; background: none;
     }
@@ -137,7 +155,7 @@
       object-fit: contain;
       margin-bottom: 9px;
       box-shadow: 0 3px 30px #0009;
-      background: #fffff0;
+      background: var(--ivory-fog);
     }
     .modal-content img {
       width: 97%;
@@ -146,18 +164,18 @@
       display: block;
       object-fit: contain;
       box-shadow: 0 3px 24px #23222650;
-      background: #fffff0;
+      background: var(--ivory-fog);
     }
     .poem-modal .modal-content { max-height: 82vh; overflow-y: auto; }
     .poem-img-modal img { width:99%; max-height:none; }
     .modal.audio {
-      background: #fffff0;
-      color: #34558B;
+      background: var(--ivory-fog);
+      color: var(--classic-blue);
       min-width: 366px; width: 390px;
       padding: 16px 8px 8px 8px;
       box-shadow: none;
     }
-    .modal.audio .modal-header { color: #34558B; }
+    .modal.audio .modal-header { color: var(--classic-blue); }
     .modal-content audio {
       width: 100%; display: block; margin: 12px auto;
       border-radius: 8px;
@@ -169,6 +187,8 @@
         width: 98vw;
         max-width: 98vw;
       }
+      .frame-inner { max-width: 99vw; }
+      .hotspots-row { max-width: 86vw;}
     }
     @media (max-width:900px){
       .frame-outer { padding: 6vw 0; }
@@ -192,6 +212,8 @@
       <div class="hotspot-bg-animate-container" id="bg-hero-parent">
         <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db81af315c44d4aaa91cb/1763555355221/Kiss+of+the+Strawberry+Moon.png"
           alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
+      </div>
+      <div class="hotspots-row">
         <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
         <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
         <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
