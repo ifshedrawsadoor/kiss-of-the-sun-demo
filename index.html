@@ -174,6 +174,16 @@
       box-shadow: 0 3px 24px #23222640;
       background: var(--ivory-fog);
     }
+    .modal-content iframe {
+      width: 99%;
+      height: 72vh;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 3px 24px #23222640;
+      background: var(--ivory-fog);
+      display: block;
+      margin: 0 auto;
+    }
     .poem-modal .modal-content { max-height: 82vh; overflow-y: auto; }
     .poem-img-modal img { width:99%; max-height:none; }
     .modal.audio {
@@ -187,19 +197,7 @@
     .modal.audio .modal-header { color: var(--classic-blue); }
     .modal-content audio {
       width: 100%; display: block; margin: 12px auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px #0009;
-      background: #eee;
-    }
-    .modal-content iframe {
-      width: 99%;
-      height: 72vh;
-      border-radius: 12px;
-      border: none;
-      box-shadow: 0 3px 24px #23222640;
-      background: var(--ivory-fog);
-      display: block;
-      margin: 0 auto;
+      border-radius: 8px; box-shadow: 0 2px 12px #0009; background: #eee;
     }
   </style>
 </head>
@@ -218,7 +216,7 @@
       </div>
     </div>
   </div>
-  <!-- CAZIMI HOTSPOT IMAGE BELOW -->
+  <!-- CAZIMI HOTSPOT IMAGE -->
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
       <div class="hero-title">Kiss of the Cazimi</div>
@@ -261,13 +259,13 @@
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691dbf74c621757299a9035c/1763557236628/Poem.png" alt="Poem" />
     </div>
   </div>
+
   <!-- CAZIMI MODALS -->
   <div class="modal large" id="modal5">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Cazimi</div>
     <div class="modal-content">
       <video src="Kiss-of-the-Cazimi.mp4" autoplay controls playsinline></video>
-      <div class="modal-text">Kiss of the Cazimi Video</div>
     </div>
   </div>
   <div class="modal" id="modal6">
@@ -280,7 +278,7 @@
   <div class="modal" id="modal7">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The Symbolism</div>
-    <div class="modal-content">
+    <div class="modal-content poem-img-modal">
       <img src="Symbolism.jpg" alt="The Symbolism" />
     </div>
   </div>
@@ -288,4 +286,72 @@
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The History</div>
     <div class="modal-content poem-img-modal">
-      <iframe
+      <iframe src="History.pdf" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const hotspots = document.querySelectorAll('.hotspot');
+    const modals = document.querySelectorAll('.modal');
+    const backdrop = document.querySelector('.modal-backdrop');
+    hotspots.forEach(hs => hs.addEventListener('click', function(e){
+      modals.forEach(m => m.style.display='none');
+      backdrop.style.display='block';
+      document.getElementById(hs.dataset.modal).style.display='block';
+      hs.classList.add('visited');
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
+      let activeModal = document.getElementById(hs.dataset.modal);
+      let v = activeModal.querySelector('video');
+      let a = activeModal.querySelector('audio');
+      if(v){
+        v.currentTime=0; v.play().catch(()=>{});
+      }
+      if(a){
+        a.currentTime=0; a.play().catch(()=>{});
+      }
+    }));
+    document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', function(){
+      modals.forEach(m => m.style.display='none');
+      backdrop.style.display='none';
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
+    }));
+    backdrop.addEventListener('click', function(){
+      modals.forEach(m => m.style.display='none');
+      backdrop.style.display='none';
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
+    });
+    window.addEventListener('scroll', function(){
+      var parent = document.getElementById('bg-hero-parent');
+      var img = document.getElementById('bg-hero-img');
+      if(window.scrollY > 48){
+        parent.classList.add('hero-expand');
+      } else {
+        parent.classList.remove('hero-expand');
+      }
+    });
+    window.addEventListener('resize', function(){
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
+    });
+  </script>
+</body>
+</html>
