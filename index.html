@@ -107,7 +107,6 @@
       .hotspot-bg-animate-container { padding-left: 2vw; padding-right: 2vw; padding-top: 32px; padding-bottom: 84px;}
       .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 { top: calc(100% - 54px);}
     }
-
     /* MODALS */
     .modal-backdrop {
       position: fixed;
@@ -146,6 +145,15 @@
       cursor: pointer; z-index: 10001;
       font-weight: bold; border: none; background: none;
     }
+    .modal-header {
+      font-family: "house-of-cards", serif;
+      color: var(--classic-blue);
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
     .modal-content video {
       width: 100%;
       max-width: 1000px;
@@ -183,9 +191,20 @@
       box-shadow: 0 2px 12px #0009;
       background: #eee;
     }
+    .modal-content iframe {
+      width: 99%;
+      height: 72vh;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 3px 24px #23222640;
+      background: var(--ivory-fog);
+      display: block;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
+  <!-- STRAWBERRY MOON HOTSPOT IMAGE -->
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
       <div class="hero-title">Kiss of the Strawberry Moon</div>
@@ -199,16 +218,29 @@
       </div>
     </div>
   </div>
+  <!-- CAZIMI HOTSPOT IMAGE BELOW -->
+  <div class="frame-outer">
+    <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
+      <div class="hero-title">Kiss of the Cazimi</div>
+      <img src="Kiss-of-the-Cazimi.jpg"
+        alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
+      <div class="hotspots-absolute">
+        <button class="hotspot h1" data-modal="modal5"><span class="pulse"></span></button>
+        <button class="hotspot h2" data-modal="modal6"><span class="pulse"></span></button>
+        <button class="hotspot h3" data-modal="modal7"><span class="pulse"></span></button>
+        <button class="hotspot h4" data-modal="modal8"><span class="pulse"></span></button>
+      </div>
+    </div>
+  </div>
   <div class="modal-backdrop"></div>
 
-  <!-- Video Modal (Header text removed) -->
+  <!-- STRAWBERRY MOON MODALS -->
   <div class="modal large" id="modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
       <video src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db8f7b289d443a4d211d3/1763555600437/Kiss+of+the+Sun+Strawberry+Moon.mp4" autoplay controls playsinline></video>
     </div>
   </div>
-  <!-- Audio Modal 1 -->
   <div class="modal audio" id="modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Origin Story Audio</div>
@@ -216,7 +248,6 @@
       <audio src="https://audio.squarespace-cdn.com/content/v2/namespaces/website/libraries/616c3b72f8bcb55a88d9cf99/assets/1763555688375-INVS47QUS2RIL0EJ2IB8/Origin%20Story.mp3" autoplay controls></audio>
     </div>
   </div>
-  <!-- Audio Modal 2 -->
   <div class="modal audio" id="modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">RX Audio</div>
@@ -224,75 +255,37 @@
       <audio src="https://audio.squarespace-cdn.com/content/v2/namespaces/website/libraries/616c3b72f8bcb55a88d9cf99/assets/1763555833256-7RUY4NRJ61JGZQ4COCZ5/RX.mp3" autoplay controls></audio>
     </div>
   </div>
-  <!-- Poem Modal (Header text removed) -->
   <div class="modal poem-modal" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content poem-img-modal">
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691dbf74c621757299a9035c/1763557236628/Poem.png" alt="Poem" />
     </div>
   </div>
-  <script>
-    const hotspots = document.querySelectorAll('.hotspot');
-    const modals = document.querySelectorAll('.modal');
-    const backdrop = document.querySelector('.modal-backdrop');
-    hotspots.forEach(hs => hs.addEventListener('click', function(e){
-      modals.forEach(m => m.style.display='none');
-      backdrop.style.display='block';
-      document.getElementById(hs.dataset.modal).style.display='block';
-      hs.classList.add('visited');
-      modals.forEach(m => {
-        let v = m.querySelector('video');
-        let a = m.querySelector('audio');
-        if (v) v.pause();
-        if (a) a.pause();
-      });
-      let activeModal = document.getElementById(hs.dataset.modal);
-      let v = activeModal.querySelector('video');
-      let a = activeModal.querySelector('audio');
-      if(v){
-        v.currentTime=0; v.play().catch(()=>{});
-      }
-      if(a){
-        a.currentTime=0; a.play().catch(()=>{});
-      }
-    }));
-    document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', function(){
-      modals.forEach(m => m.style.display='none');
-      backdrop.style.display='none';
-      modals.forEach(m => {
-        let v = m.querySelector('video');
-        let a = m.querySelector('audio');
-        if (v) v.pause();
-        if (a) a.pause();
-      });
-    }));
-    backdrop.addEventListener('click', function(){
-      modals.forEach(m => m.style.display='none');
-      backdrop.style.display='none';
-      modals.forEach(m => {
-        let v = m.querySelector('video');
-        let a = m.querySelector('audio');
-        if (v) v.pause();
-        if (a) a.pause();
-      });
-    });
-    window.addEventListener('scroll', function(){
-      var parent = document.getElementById('bg-hero-parent');
-      var img = document.getElementById('bg-hero-img');
-      if(window.scrollY > 48){
-        parent.classList.add('hero-expand');
-      } else {
-        parent.classList.remove('hero-expand');
-      }
-    });
-    window.addEventListener('resize', function(){
-      modals.forEach(m => {
-        let v = m.querySelector('video');
-        let a = m.querySelector('audio');
-        if (v) v.pause();
-        if (a) a.pause();
-      });
-    });
-  </script>
-</body>
-</html>
+  <!-- CAZIMI MODALS -->
+  <div class="modal large" id="modal5">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">Kiss of the Cazimi</div>
+    <div class="modal-content">
+      <video src="Kiss-of-the-Cazimi.mp4" autoplay controls playsinline></video>
+      <div class="modal-text">Kiss of the Cazimi Video</div>
+    </div>
+  </div>
+  <div class="modal" id="modal6">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">The Ritual</div>
+    <div class="modal-content poem-img-modal">
+      <iframe src="Ritual.pdf" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="modal" id="modal7">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">The Symbolism</div>
+    <div class="modal-content">
+      <img src="Symbolism.jpg" alt="The Symbolism" />
+    </div>
+  </div>
+  <div class="modal" id="modal8">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">The History</div>
+    <div class="modal-content poem-img-modal">
+      <iframe
