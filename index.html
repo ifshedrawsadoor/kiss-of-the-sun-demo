@@ -70,7 +70,7 @@
     .hotspot {
       pointer-events: auto;
       width: 54px; height: 54px;
-      background: var(--tomato-red);
+      background: var(--classic-blue);
       border: none; border-radius: 50%;
       outline: none; cursor: pointer;
       box-shadow: 0 2px 14px rgba(40,20,20,.15);
@@ -79,7 +79,6 @@
       margin: 0;
       z-index: 3;
       position: absolute;
-      /* These will be overridden for each hotspot below */
     }
     .hotspot .pulse {
       width: 18px; height: 18px;
@@ -93,11 +92,10 @@
       100% { box-shadow: 0 0 0 0px #f9642500, 0 0 0 0px #fff2; }
     }
     .hotspot:hover { background: var(--golden-ochre); }
-    .hotspot.visited { background: var(--classic-blue); }
-    /* Position each hotspot under each third */
+    .hotspot.visited { background: var(--tomato-red); }
     .hotspot.h1 { left: 16.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h2 { left: 49.9%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h3 { left: 66.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h2 { left: 44.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h3 { left: 55.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
     .hotspot.h4 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
     @media (max-width:1100px) {
       .hotspot-bg-animate-container { padding-left: 3vw; padding-right: 3vw; }
