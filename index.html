@@ -94,9 +94,8 @@
     .hotspot:hover { background: var(--golden-ochre); }
     .hotspot.visited { background: var(--tomato-red); }
     .hotspot.h1 { left: 16.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h2 { left: 44.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h3 { left: 55.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h4 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h2 { left: 50%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h3 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
     @media (max-width:1100px) {
       .hotspot-bg-animate-container { padding-left: 3vw; padding-right: 3vw; }
       .bg-main-img { max-width: 95vw; }
@@ -105,7 +104,7 @@
       .frame-outer { padding: 2vw 0 2vw 0; }
       .hero-title { font-size: 6vw; }
       .hotspot-bg-animate-container { padding-left: 2vw; padding-right: 2vw; padding-top: 32px; padding-bottom: 84px;}
-      .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 { top: calc(100% - 54px);}
+      .hotspot.h1, .hotspot.h2, .hotspot.h3 { top: calc(100% - 54px);}
     }
     /* MODALS */
     .modal-backdrop {
@@ -154,35 +153,24 @@
       letter-spacing: 1px;
       text-align: center;
     }
+    .modal-content video, .modal-content iframe, .modal-content img {
+      width: 99%;
+      max-width: 1000px;
+      border-radius: 14px;
+      display: block;
+      margin: 0 auto 9px auto;
+      object-fit: contain;
+      box-shadow: 0 3px 24px #23222640;
+      background: var(--ivory-fog);
+    }
     .modal-content video {
-      width: 100%;
       max-width: 1000px;
       max-height: 82vh;
-      display: block;
-      border-radius: 14px;
-      object-fit: contain;
-      margin-bottom: 9px;
       box-shadow: 0 3px 30px #0009;
-      background: var(--ivory-fog);
-    }
-    .modal-content img {
-      width: 99%;
-      border-radius: 14px;
-      margin-bottom: 9px;
-      display: block;
-      object-fit: contain;
-      box-shadow: 0 3px 24px #23222640;
-      background: var(--ivory-fog);
     }
     .modal-content iframe {
-      width: 99%;
       height: 72vh;
-      border-radius: 14px;
       border: none;
-      box-shadow: 0 3px 24px #23222640;
-      background: var(--ivory-fog);
-      display: block;
-      margin: 0 auto;
     }
     .poem-modal .modal-content { max-height: 82vh; overflow-y: auto; }
     .poem-img-modal img { width:99%; max-height:none; }
@@ -206,28 +194,23 @@
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
       <div class="hero-title">Kiss of the Strawberry Moon</div>
-      <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db81af315c44d4aaa91cb/1763555355221/Kiss+of+the+Strawberry+Moon.png"
-        alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
+      <img src="Kiss of the Strawberry Moon.png" alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
       <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
         <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
         <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
-        <button class="hotspot h4" data-modal="modal4"><span class="pulse"></span></button>
       </div>
     </div>
   </div>
-
   <!-- CAZIMI HOTSPOT IMAGE -->
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
       <div class="hero-title">Kiss of the Cazimi</div>
-      <img src="Kiss-of-the-Cazimi.jpg"
-        alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
+      <img src="Kiss-of-the-Cazimi.jpg" alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
       <div class="hotspots-absolute">
-        <button class="hotspot h1" data-modal="modal5"><span class="pulse"></span></button>
-        <button class="hotspot h2" data-modal="modal6"><span class="pulse"></span></button>
-        <button class="hotspot h3" data-modal="modal7"><span class="pulse"></span></button>
-        <button class="hotspot h4" data-modal="modal8"><span class="pulse"></span></button>
+        <button class="hotspot h1" data-modal="modal4"><span class="pulse"></span></button>
+        <button class="hotspot h2" data-modal="modal5"><span class="pulse"></span></button>
+        <button class="hotspot h3" data-modal="modal6"><span class="pulse"></span></button>
       </div>
     </div>
   </div>
@@ -236,37 +219,39 @@
   <!-- STRAWBERRY MOON MODALS -->
   <div class="modal large" id="modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">Kiss of the Strawberry Moon</div>
     <div class="modal-content">
-      <video src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691db8f7b289d443a4d211d3/1763555600437/Kiss+of+the+Sun+Strawberry+Moon.mp4" autoplay controls playsinline></video>
+      <video src="Kiss of the Strawberry Moon.mp4" autoplay controls playsinline></video>
     </div>
   </div>
   <div class="modal audio" id="modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Origin Story Audio</div>
     <div class="modal-content">
-      <audio src="https://audio.squarespace-cdn.com/content/v2/namespaces/website/libraries/616c3b72f8bcb55a88d9cf99/assets/1763555688375-INVS47QUS2RIL0EJ2IB8/Origin%20Story.mp3" autoplay controls></audio>
+      <audio src="Origin Story.mp3" autoplay controls></audio>
     </div>
   </div>
   <div class="modal audio" id="modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">RX Audio</div>
     <div class="modal-content">
-      <audio src="https://audio.squarespace-cdn.com/content/v2/namespaces/website/libraries/616c3b72f8bcb55a88d9cf99/assets/1763555833256-7RUY4NRJ61JGZQ4COCZ5/RX.mp3" autoplay controls></audio>
-    </div>
-  </div>
-  <div class="modal poem-modal" id="modal4">
-    <button class="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-content poem-img-modal">
-      <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691dbf74c621757299a9035c/1763557236628/Poem.png" alt="Poem" />
+      <audio src="RX.mp4" autoplay controls></audio>
     </div>
   </div>
 
-  <!-- CAZIMI MODALS using your assets and fixed formats -->
-  <div class="modal large" id="modal5">
+  <!-- CAZIMI MODALS (Video, PNG, PDF) -->
+  <div class="modal large" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Cazimi</div>
     <div class="modal-content">
-      <video src="Kiss-of-the-Cazimi.mp4" autoplay controls playsinline style="width:100%;max-width:1000px;max-height:82vh;display:block;border-radius:14px;object-fit:contain;margin-bottom:9px;box-shadow:0 3px 30px #0009;background:#F9F6EE;"></video>
+      <video src="Kiss of the Cazimi.mp4" autoplay controls playsinline></video>
+    </div>
+  </div>
+  <div class="modal poem-modal" id="modal5">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">The Poem</div>
+    <div class="modal-content poem-img-modal">
+      <img src="Poem.png" alt="The Poem" />
     </div>
   </div>
   <div class="modal poem-modal" id="modal6">
@@ -276,21 +261,6 @@
       <iframe src="Ritual.pdf" allowfullscreen></iframe>
     </div>
   </div>
-  <div class="modal poem-modal" id="modal7">
-    <button class="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-header">The Symbolism</div>
-    <div class="modal-content poem-img-modal">
-      <img src="Symbolism.png" alt="The Symbolism" />
-    </div>
-  </div>
-  <div class="modal poem-modal" id="modal8">
-    <button class="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-header">The History</div>
-    <div class="modal-content poem-img-modal">
-      <iframe src="History.pdf" allowfullscreen></iframe>
-    </div>
-  </div>
-
   <script>
     const hotspots = document.querySelectorAll('.hotspot');
     const modals = document.querySelectorAll('.modal');
