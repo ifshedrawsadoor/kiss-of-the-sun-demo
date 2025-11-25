@@ -166,7 +166,7 @@
       background: var(--ivory-fog);
     }
     .modal-content img {
-      width: 97%;
+      width: 99%;
       border-radius: 14px;
       margin-bottom: 9px;
       display: block;
@@ -177,7 +177,7 @@
     .modal-content iframe {
       width: 99%;
       height: 72vh;
-      border-radius: 12px;
+      border-radius: 14px;
       border: none;
       box-shadow: 0 3px 24px #23222640;
       background: var(--ivory-fog);
@@ -216,6 +216,7 @@
       </div>
     </div>
   </div>
+
   <!-- CAZIMI HOTSPOT IMAGE -->
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
@@ -259,35 +260,37 @@
       <img src="https://static1.squarespace.com/static/616c3b72f8bcb55a88d9cf99/t/691dbf74c621757299a9035c/1763557236628/Poem.png" alt="Poem" />
     </div>
   </div>
-  <!-- CAZIMI MODALS with YOUR FILES -->
+
+  <!-- CAZIMI MODALS using your assets and fixed formats -->
   <div class="modal large" id="modal5">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Cazimi</div>
     <div class="modal-content">
-      <video src="Kiss-of-the-Cazimi.mp4" autoplay controls playsinline></video>
+      <video src="Kiss-of-the-Cazimi.mp4" autoplay controls playsinline style="width:100%;max-width:1000px;max-height:82vh;display:block;border-radius:14px;object-fit:contain;margin-bottom:9px;box-shadow:0 3px 30px #0009;background:#F9F6EE;"></video>
     </div>
   </div>
-  <div class="modal" id="modal6">
+  <div class="modal poem-modal" id="modal6">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The Ritual</div>
     <div class="modal-content poem-img-modal">
       <iframe src="Ritual.pdf" allowfullscreen></iframe>
     </div>
   </div>
-  <div class="modal" id="modal7">
+  <div class="modal poem-modal" id="modal7">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The Symbolism</div>
     <div class="modal-content poem-img-modal">
-      <img src="Symbolism.jpg" alt="The Symbolism" />
+      <img src="Symbolism.png" alt="The Symbolism" />
     </div>
   </div>
-  <div class="modal" id="modal8">
+  <div class="modal poem-modal" id="modal8">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The History</div>
     <div class="modal-content poem-img-modal">
       <iframe src="History.pdf" allowfullscreen></iframe>
     </div>
   </div>
+
   <script>
     const hotspots = document.querySelectorAll('.hotspot');
     const modals = document.querySelectorAll('.modal');
