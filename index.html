@@ -153,20 +153,27 @@
       letter-spacing: 1px;
       text-align: center;
     }
-    .modal-content video, .modal-content iframe, .modal-content img {
-      width: 99%;
+    .modal-content video {
+      width: 100%;
       max-width: 1000px;
-      border-radius: 14px;
+      max-height: 82vh;
       display: block;
-      margin: 0 auto 9px auto;
+      border-radius: 14px;
+      object-fit: contain;
+      margin-bottom: 9px;
+      box-shadow: 0 3px 30px #0009;
+      background: var(--ivory-fog);
+    }
+    .modal-content img, .modal-content iframe {
+      width: 97%;
+      border-radius: 14px;
+      margin-bottom: 9px;
+      display: block;
       object-fit: contain;
       box-shadow: 0 3px 24px #23222640;
       background: var(--ivory-fog);
-    }
-    .modal-content video {
-      max-width: 1000px;
-      max-height: 82vh;
-      box-shadow: 0 3px 30px #0009;
+      margin-left: auto;
+      margin-right: auto;
     }
     .modal-content iframe {
       height: 72vh;
@@ -185,7 +192,9 @@
     .modal.audio .modal-header { color: var(--classic-blue); }
     .modal-content audio {
       width: 100%; display: block; margin: 12px auto;
-      border-radius: 8px; box-shadow: 0 2px 12px #0009; background: #eee;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px #0009;
+      background: #eee;
     }
   </style>
 </head>
@@ -206,7 +215,7 @@
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
       <div class="hero-title">Kiss of the Cazimi</div>
-      <img src="Kiss-of-the-Cazimi.jpg" alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
+      <img src="Kiss of the Cazimi.png" alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
       <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="modal4"><span class="pulse"></span></button>
         <button class="hotspot h2" data-modal="modal5"><span class="pulse"></span></button>
@@ -239,7 +248,7 @@
     </div>
   </div>
 
-  <!-- CAZIMI MODALS (Video, PNG, PDF) -->
+  <!-- CAZIMI MODALS -->
   <div class="modal large" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Cazimi</div>
@@ -261,6 +270,7 @@
       <iframe src="Ritual.pdf" allowfullscreen></iframe>
     </div>
   </div>
+
   <script>
     const hotspots = document.querySelectorAll('.hotspot');
     const modals = document.querySelectorAll('.modal');
