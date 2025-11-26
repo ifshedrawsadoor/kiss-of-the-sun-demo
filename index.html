@@ -15,107 +15,51 @@
     html, body {
       margin: 0;
       padding: 0;
-      font-family: "minion-pro", Georgia, "Times New Roman", serif;
-      background: #ece2d0;
-      color: #241f1c;
+      background: var(--ivory-fog);
+      min-height: 100vh;
     }
-    body {
+    .frame-outer {
+      background: var(--ivory-fog);
+      padding: 64px 0 64px 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .hotspot-bg-animate-container {
+      background: var(--ivory-fog);
+      border-radius: 32px;
+      box-shadow: 0 8px 40px 8px #ece6dd;
+      margin: 0 auto;
+      padding: 46px 50px 104px 50px;
+      max-width: 1100px;
+      min-width: 340px;
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #fffaf0 0, #f1e2c6 40%, #d8c3a5 100%);
-    }
-    .hero-shell {
-      width: 100%;
-      max-width: 1300px;
-      margin: 20px auto 28px auto;
-      padding: 18px 18px 28px 18px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 32px;
-      box-shadow: 0 24px 80px rgba(30,20,10,0.23);
-      border: 3px solid rgba(15,76,129,0.08);
-      box-sizing: border-box;
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
-    .hero-shell.hero-expand {
-      transform: translateY(-3px);
-      box-shadow: 0 32px 90px rgba(30,20,10,0.31);
     }
     .hero-title {
-      text-align: center;
+      font-family: "house-of-cards", serif;
       color: var(--classic-blue);
-      margin: 0 0 8px;
-      font-size: 2.1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-family: "adobe-garamond-pro", Georgia, serif;
-    }
-    .hero-subtitle {
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
       text-align: center;
-      margin: 0 0 10px;
-      font-size: 1rem;
-      color: #6b5a4a;
-      letter-spacing: 0.04em;
-    }
-    .hero-intro {
-      text-align: center;
-      margin: 4px auto 20px;
-      max-width: 680px;
-      line-height: 1.5;
-      font-size: 0.98rem;
-      color: #4d4035;
-    }
-    .bg-main-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 12px 0 18px 0;
-    }
-    .hotspot-bg-animate-container {
-      position: relative;
-      display: inline-block;
-      padding: 0 4vw;
-      box-sizing: border-box;
-    }
-    .bg-main-inner {
-      position: relative;
-      display: inline-block;
-      padding: 18px 22px;
-      border-radius: 26px;
-      background: linear-gradient(145deg, #fdf5ea, #f4dfc3);
-      box-shadow: 0 14px 50px rgba(24,12,4,0.28);
-    }
-    .bg-frame {
-      position: relative;
-      border-radius: 22px;
-      padding: 12px 14px;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.9),
-        inset 0 0 0 3px rgba(15,76,129,0.4),
-        0 18px 55px rgba(0,0,0,0.22);
-      background: radial-gradient(circle at top, #fffaf6 0, #f5e0c7 42%, #e0c4a0 100%);
-    }
-    .frame-outer {
-      position: relative;
-      border-radius: 18px;
-      padding: 1.6vw;
-      background: linear-gradient(145deg, #fdf9f2, #f5d7ae);
-      box-shadow:
-        0 22px 45px rgba(42,29,18,0.32),
-        inset 0 0 0 1px rgba(255,255,255,0.6);
+      margin-bottom: 32px;
+      width: 100%;
     }
     .bg-main-img {
       display: block;
-      max-width: 960px;
       width: 100%;
+      max-width: 1000px;
+      min-width: 320px;
       height: auto;
-      border-radius: 16px;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.32);
-    }
-    .bg-main-img.alt {
-      display: none;
+      object-fit: contain;
+      border-radius: 22px;
+      margin: 0 auto;
+      box-shadow: 0 3px 18px 0 #ded8ce;
+      background: var(--ivory-fog);
     }
     .hotspots-absolute {
       position: absolute;
@@ -131,70 +75,35 @@
       box-shadow: 0 2px 14px rgba(40,20,20,.15);
       transition: background .2s;
       display: flex; align-items: center; justify-content: center;
+      margin: 0;
+      z-index: 3;
       position: absolute;
+    }
+    .hotspot .pulse {
+      width: 18px; height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      animation: pulseit 1.25s infinite;
+    }
+    @keyframes pulseit {
+      0% { box-shadow: 0 0 0 0px #f96425a0, 0 0 0 0px #fff9; }
+      70% { box-shadow: 0 0 0 18px #f9642500, 0 0 0 8px #fff2; }
+      100% { box-shadow: 0 0 0 0px #f9642500, 0 0 0 0px #fff2; }
     }
     .hotspot:hover { background: var(--golden-ochre); }
     .hotspot.visited { background: var(--tomato-red); }
     .hotspot.h1 { left: 16.6%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h2 { left: 44.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h3 { left: 55.5%; top: calc(100% - 70px); transform: translate(-50%, 0);}
-    .hotspot.h4 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h2 { left: 50%; top: calc(100% - 70px); transform: translate(-50%, 0);}
+    .hotspot.h3 { left: 83.3%; top: calc(100% - 70px); transform: translate(-50%, 0);}
     @media (max-width:1100px) {
       .hotspot-bg-animate-container { padding-left: 3vw; padding-right: 3vw; }
       .bg-main-img { max-width: 95vw; }
     }
-    @media (max-width:850px) {
+    @media (max-width: 900px) {
       .frame-outer { padding: 2vw 0 2vw 0; }
-      .bg-frame { padding: 2vw 1.5vw 2.5vw 1.5vw;}
-      .bg-main-inner { padding: 12px 10px;}
-    }
-    .hotspot span {
-      color: #fff;
-      font-weight: bold;
-      text-shadow: 0 2px 4px rgba(0,0,0,.3);
-    }
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(250,211,107,0.9); }
-      70%  { box-shadow: 0 0 0 18px rgba(250,211,107,0); }
-      100% { box-shadow: 0 0 0 0 rgba(250,211,107,0); }
-    }
-    .hotspot.pulse {
-      animation: pulse 1.6s infinite;
-    }
-    .caption-row {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 0.95rem;
-    }
-    .caption-row strong {
-      color: var(--classic-blue);
-      font-weight: 600;
-    }
-    .footer-note {
-      font-size: 0.84rem;
-      text-align: center;
-      color: #6b5a4a;
-      margin-top: 8px;
-    }
-    .buttons-row {
-      margin-top: 18px;
-      text-align: center;
-    }
-    .buttons-row button {
-      margin: 4px 8px;
-      padding: 6px 14px;
-      font-size: 0.88rem;
-      border-radius: 999px;
-      border: 1px solid rgba(15,76,129,0.35);
-      background: linear-gradient(145deg,#fff8ef,#f4dcc0);
-      color: #333;
-      cursor: pointer;
-      box-shadow: 0 3px 9px rgba(0,0,0,0.16);
-      font-family: "minion-pro", Georgia, "Times New Roman", serif;
-      letter-spacing: .03em;
-    }
-    .buttons-row button:hover {
-      background: linear-gradient(145deg,#fdf0de,#f0c99d);
+      .hero-title { font-size: 6vw; }
+      .hotspot-bg-animate-container { padding-left: 2vw; padding-right: 2vw; padding-top: 32px; padding-bottom: 84px;}
+      .hotspot.h1, .hotspot.h2, .hotspot.h3 { top: calc(100% - 54px);}
     }
     .modal-backdrop {
       position: fixed;
@@ -209,23 +118,38 @@
       transform: translate(-50%,-50%);
       border-radius: 18px;
       border: 4px solid var(--classic-blue);
-      box-shadow: 0 12px 50px rgba(0,0,0,0.55);
-      background: #fdf9f3;
-      display: none;
-      max-width: 1100px;
-      width: 95vw;
-      max-height: 92vh;
-      padding: 16px 16px 20px 16px;
-      box-sizing: border-box;
-    }
-    .modal.poem-modal {
+      box-shadow: 0 12px 48px 2px #c9e3f8, 0 0 0 4px #d5eaff60;
       background: var(--ivory-fog);
+      color: var(--classic-blue);
+      font-family: 'house-of-cards', Arial, serif;
+      min-width: 340px;
+      box-sizing: border-box;
+      padding: 20px 8px 10px 8px;
+      max-width: 98vw;
+      max-height: 95vh;
+      overflow: auto;
+      display: none;
+    }
+    .modal.large {
+      width: 92vw;
+      max-width: 1100px;
+      max-height: 88vh;
+      padding: 12px 8px 8px 8px;
     }
     .modal-close {
       position: absolute; top: 12px; right: 28px;
       font-size: 2em; color: var(--classic-blue);
       cursor: pointer; z-index: 10001;
       font-weight: bold; border: none; background: none;
+    }
+    .modal-header {
+      font-family: "house-of-cards", serif;
+      color: var(--classic-blue);
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      text-align: center;
     }
     .modal-content video {
       width: 100%;
@@ -238,16 +162,7 @@
       box-shadow: 0 3px 30px #0009;
       background: var(--ivory-fog);
     }
-    .modal-header {
-      font-family: "adobe-garamond-pro", Georgia, serif;
-      color: var(--classic-blue);
-      font-size: 1.6em;
-      font-weight: bold;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-    .modal-content img {
+    .modal-content img, .modal-content iframe {
       width: 97%;
       border-radius: 14px;
       margin-bottom: 9px;
@@ -255,20 +170,15 @@
       object-fit: contain;
       box-shadow: 0 3px 24px #23222640;
       background: var(--ivory-fog);
+      margin-left: auto;
+      margin-right: auto;
     }
     .modal-content iframe {
-      width: 97%;
-      height: 82vh;
-      border-radius: 14px;
-      margin-bottom: 9px;
-      display: block;
-      box-shadow: 0 3px 24px #23222640;
-      background: var(--ivory-fog);
+      height: 72vh;
       border: none;
     }
     .poem-modal .modal-content { max-height: 82vh; overflow-y: auto; }
     .poem-img-modal img { width:99%; max-height:none; }
-    .poem-img-modal iframe { width:99%; max-height:none; }
     .modal.audio {
       background: var(--ivory-fog);
       color: var(--classic-blue);
@@ -284,91 +194,74 @@
       box-shadow: 0 2px 12px #0009;
       background: #eee;
     }
-  
   </style>
 </head>
 <body>
-  <div class="hero-shell">
-    <h1 class="hero-title">KISS OF THE SUN</h1>
-    <p class="hero-subtitle">An Interactive Demo</p>
-    <p class="hero-intro">
-      Tap a glowing orb to explore a short video, poem, or ritual. This demo shows how
-      different media can coexist in one playful container: video, image, PDF, and audio.
-    </p>
-
-    <div class="bg-main-wrap">
-      <div class="hotspot-bg-animate-container">
-        <div class="bg-main-inner">
-          <div class="bg-frame">
-            <div class="frame-outer">
-              <img
-                src="Kiss-of-the-Sun-Split.png"
-                alt="Kiss of the Sun"
-                class="bg-main-img"
-              />
-              <img
-                src="Kiss-of-the-Sun-Split.png"
-                alt="Kiss of the Sun"
-                class="bg-main-img alt"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="hotspots-absolute">
-          <button class="hotspot h1 pulse" data-modal="modal1"><span>1</span></button>
-          <button class="hotspot h2" data-modal="modal2"><span>2</span></button>
-          <button class="hotspot h3" data-modal="modal3"><span>3</span></button>
-          <button class="hotspot h4" data-modal="modal4"><span>4</span></button>
-        </div>
+  <!-- STRAWBERRY MOON -->
+  <div class="frame-outer">
+    <div class="hotspot-bg-animate-container" id="bg-hero-parent">
+      <div class="hero-title">Kiss of the Strawberry Moon</div>
+      <img src="Kiss of the Strawberry Moon.png" alt="Kiss of the Strawberry Moon" class="bg-main-img" id="bg-hero-img" />
+      <div class="hotspots-absolute">
+        <button class="hotspot h1" data-modal="modal1"><span class="pulse"></span></button>
+        <button class="hotspot h2" data-modal="modal2"><span class="pulse"></span></button>
+        <button class="hotspot h3" data-modal="modal3"><span class="pulse"></span></button>
       </div>
     </div>
-
-    <div class="caption-row">
-      <strong>Hotspots:</strong> Tap 1–4 to explore the content.
-    </div>
-
-    <div class="footer-note">
-      This is a prototype. Layout, colors, and interactions can all be customized.
-    </div>
-
-    <div class="buttons-row">
-      <button type="button" id="resetHotspotsBtn">Reset Hotspots</button>
-      <button type="button" id="toggleHeroExpandBtn">Toggle Emphasis</button>
+  </div>
+  <!-- CAZIMI -->
+  <div class="frame-outer">
+    <div class="hotspot-bg-animate-container" id="bg-hero-cazimi">
+      <div class="hero-title">Kiss of the Cazimi</div>
+      <img src="Kiss of the Cazimi.png" alt="Kiss of the Cazimi" class="bg-main-img" id="bg-cazimi-img" />
+      <div class="hotspots-absolute">
+        <button class="hotspot h1" data-modal="modal4"><span class="pulse"></span></button>
+        <button class="hotspot h2" data-modal="modal5"><span class="pulse"></span></button>
+        <button class="hotspot h3" data-modal="modal6"><span class="pulse"></span></button>
+      </div>
     </div>
   </div>
-
   <div class="modal-backdrop"></div>
 
-  <!-- Modal 1: Kiss of the Strawberry Moon -->
-  <div class="modal" id="modal1">
+  <!-- STRAWBERRY MOON MODALS -->
+  <div class="modal large" id="modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Strawberry Moon</div>
     <div class="modal-content">
-      <video src="Kiss-of-the-Strawberry-Moon-1.mp4" autoplay controls playsinline></video>
+      <video src="Kiss of the Strawberry Moon.mp4" autoplay controls playsinline></video>
     </div>
   </div>
-
-  <!-- Modal 2: The Poem -->
-  <div class="modal poem-modal" id="modal2">
+  <div class="modal audio" id="modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-header">The Poem</div>
-    <div class="modal-content poem-img-modal">
-      <img src="Poem.png" alt="The Poem" />
+    <div class="modal-header">Origin Story Audio</div>
+    <div class="modal-content">
+      <audio src="Origin Story.mp3" autoplay controls></audio>
+    </div>
+  </div>
+  <div class="modal audio" id="modal3">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">RX Audio</div>
+    <div class="modal-content">
+      <audio src="RX.mp4" autoplay controls></audio>
     </div>
   </div>
 
-  <!-- Modal 3: Kiss of the Cazimi -->
-  <div class="modal" id="modal4">
+  <!-- CAZIMI MODALS using identical structure -->
+  <div class="modal large" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Kiss of the Cazimi</div>
     <div class="modal-content">
       <video src="Kiss of the Cazimi.mp4" autoplay controls playsinline></video>
     </div>
   </div>
-
-  <!-- Modal 4: The Ritual PDF -->
-  <div class="modal poem-modal" id="modal3">
+  <div class="modal poem-modal" id="modal5">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-header">The Poem</div>
+    <div class="modal-content poem-img-modal">
+      <img src="Poem.png" alt="The Poem" />
+    </div>
+  </div>
+  <div class="modal poem-modal" id="modal6">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">The Ritual</div>
     <div class="modal-content poem-img-modal">
@@ -385,61 +278,58 @@
       backdrop.style.display='block';
       document.getElementById(hs.dataset.modal).style.display='block';
       hs.classList.add('visited');
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
+      let activeModal = document.getElementById(hs.dataset.modal);
+      let v = activeModal.querySelector('video');
+      let a = activeModal.querySelector('audio');
+      if(v){
+        v.currentTime=0; v.play().catch(()=>{});
+      }
+      if(a){
+        a.currentTime=0; a.play().catch(()=>{});
+      }
+    }));
+    document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', function(){
+      modals.forEach(m => m.style.display='none');
+      backdrop.style.display='none';
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
     }));
     backdrop.addEventListener('click', function(){
       modals.forEach(m => m.style.display='none');
       backdrop.style.display='none';
-    });
-    document.querySelectorAll('.modal-close').forEach(btn => {
-      btn.addEventListener('click', function(){
-        modals.forEach(m => m.style.display='none');
-        backdrop.style.display='none';
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
       });
     });
-
-    const resetBtn = document.getElementById('resetHotspotsBtn');
-    resetBtn.addEventListener('click', () => {
-      hotspots.forEach(h => h.classList.remove('visited'));
-      const first = document.querySelector('.hotspot.h1');
-      if(first) first.classList.add('pulse');
-    });
-
-    const heroShell = document.querySelector('.hero-shell');
-    const toggleHeroBtn = document.getElementById('toggleHeroExpandBtn');
-    toggleHeroBtn.addEventListener('click', () => {
-      heroShell.classList.toggle('hero-expand');
-    });
-
-    document.querySelectorAll('video, audio').forEach(media => {
-      media.addEventListener('play', () => {
-        document.querySelectorAll('video, audio').forEach(m => {
-          if (m !== media) m.pause();
-        });
-      });
-    });
-
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-    });
-
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-          document.querySelectorAll('.modal').forEach(m => m.style.display='none');
-          document.querySelector('.modal-backdrop').style.display='none';
-          document.querySelectorAll('video, audio').forEach(a => a.pause());
-        }
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.modal').forEach(m => m.style.display='none');
-        document.querySelector('.modal-backdrop').style.display='none';
-        document.querySelectorAll('video, audio').forEach(a => a.pause());
+    window.addEventListener('scroll', function(){
+      var parent = document.getElementById('bg-hero-parent');
+      var img = document.getElementById('bg-hero-img');
+      if(window.scrollY > 48){
+        parent.classList.add('hero-expand');
+      } else {
+        parent.classList.remove('hero-expand');
       }
+    });
+    window.addEventListener('resize', function(){
+      modals.forEach(m => {
+        let v = m.querySelector('video');
+        let a = m.querySelector('audio');
+        if (v) v.pause();
+        if (a) a.pause();
+      });
     });
   </script>
 </body>
