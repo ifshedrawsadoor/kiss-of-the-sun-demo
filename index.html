@@ -33,8 +33,7 @@
     }
 
     .frame-outer + .frame-outer {
-      /* space between Strawberry and Cazimi blocks */
-      margin-top: -32px;
+      margin-top: -32px; /* space between Strawberry and Cazimi sections */
     }
 
     .hotspot-bg-animate-container {
@@ -199,7 +198,6 @@
       background: var(--ivory-fog);
     }
 
-    /* Poem-style scrollable content (used for Poem.png and Cazimi PDFs) */
     .poem-modal .modal-content {
       max-height: 82vh;
       overflow-y: auto;
@@ -230,26 +228,30 @@
       background: #eee;
     }
 
-    /* PDF iframe styled like Poem image modal */
+    /* PDF modals: match poem modal sizing as closely as possible */
+    .pdf-modal {
+      /* same base as .modal; we rely on shared .modal styles */
+    }
+
     .pdf-modal .modal-content {
-      max-height: 82vh;
+      max-height: 82vh;   /* same as poem modal content */
       overflow-y: auto;
     }
 
     .pdf-modal iframe {
-      width: 99%;
-      height: 82vh;
+      width: 99%;         /* same visual width as Poem image */
+      height: 82vh;       /* tall viewport for legibility */
       border: none;
       border-radius: 14px;
       box-shadow: 0 3px 24px #23222640;
       background: var(--ivory-fog);
       display: block;
+      margin: 0 auto 9px auto;
     }
   </style>
 </head>
 
 <body>
-
   <!-- STRAWBERRY SECTION -->
   <div class="frame-outer">
     <div class="hotspot-bg-animate-container" id="bg-hero-parent-strawberry">
@@ -312,7 +314,7 @@
 
   <!-- STRAWBERRY MODALS -->
 
-  <!-- Video -->
+  <!-- 1: Video -->
   <div class="modal large" id="strawberry-modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
@@ -325,7 +327,7 @@
     </div>
   </div>
 
-  <!-- Origin Story audio -->
+  <!-- 2: Origin Story audio -->
   <div class="modal audio" id="strawberry-modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Origin Story Audio</div>
@@ -334,7 +336,7 @@
     </div>
   </div>
 
-  <!-- RX audio -->
+  <!-- 3: RX audio -->
   <div class="modal audio" id="strawberry-modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">RX Audio</div>
@@ -347,7 +349,7 @@
     </div>
   </div>
 
-  <!-- Poem image -->
+  <!-- 4: Poem image -->
   <div class="modal poem-modal" id="strawberry-modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content poem-img-modal">
@@ -357,7 +359,7 @@
 
   <!-- CAZIMI MODALS -->
 
-  <!-- 1: Video -->
+  <!-- 1: Cazimi video -->
   <div class="modal large" id="cazimi-modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
@@ -374,10 +376,7 @@
   <div class="modal pdf-modal" id="cazimi-modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
-      <iframe
-        src="Ritual.pdf"
-        title="Ritual"
-      ></iframe>
+      <iframe src="Ritual.pdf" title="Ritual"></iframe>
     </div>
   </div>
 
@@ -385,10 +384,7 @@
   <div class="modal pdf-modal" id="cazimi-modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
-      <iframe
-        src="Symbolism.pdf"
-        title="Symbolism"
-      ></iframe>
+      <iframe src="Symbolism.pdf" title="Symbolism"></iframe>
     </div>
   </div>
 
@@ -396,10 +392,7 @@
   <div class="modal pdf-modal" id="cazimi-modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
-      <iframe
-        src="History.pdf"
-        title="History"
-      ></iframe>
+      <iframe src="History.pdf" title="History"></iframe>
     </div>
   </div>
 
