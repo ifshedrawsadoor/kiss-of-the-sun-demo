@@ -125,10 +125,7 @@
         padding-top: 32px;
         padding-bottom: 84px;
       }
-      .hotspot.h1,
-      .hotspot.h2,
-      .hotspot.h3,
-      .hotspot.h4 {
+      .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 {
         top: calc(100% - 54px);
       }
     }
@@ -161,10 +158,9 @@
       display: none;
     }
 
-    /* Portrait-friendly video modal */
     .modal.large {
-      width: auto;
-      max-width: 60vw;      /* desktop: narrower column */
+      width: 92vw;
+      max-width: 1100px;
       max-height: 88vh;
       padding: 12px 8px 8px 8px;
     }
@@ -176,16 +172,14 @@
       font-weight: bold; border: none; background: none;
     }
 
-    /* Portrait video sizing */
     .modal-content video {
-      width: auto;          /* let height drive scaling */
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      max-width: 1000px;
       max-height: 82vh;
       display: block;
-      margin: 0 auto 9px auto;
       border-radius: 14px;
       object-fit: contain;
+      margin-bottom: 9px;
       box-shadow: 0 3px 30px #0009;
       background: var(--ivory-fog);
     }
@@ -229,13 +223,6 @@
       box-shadow: 0 2px 12px #0009;
       background: #eee;
     }
-
-    /* Make the portrait video modal use more width on small screens */
-    @media (max-width: 768px) {
-      .modal.large {
-        max-width: 90vw;
-      }
-    }
   </style>
 </head>
 
@@ -244,7 +231,7 @@
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
       <div class="hero-title">Kiss of the Strawberry Moon</div>
 
-      <!-- Background image now points to GitHub asset -->
+      <!-- You can swap this PNG to a raw URL later if you want -->
       <img
         src="Kiss of the Strawberry Moon.png"
         alt="Kiss of the Strawberry Moon"
@@ -271,12 +258,16 @@
 
   <div class="modal-backdrop"></div>
 
-  <!-- Video Modal -->
+  <!-- Video Modal using raw GitHub URL -->
   <div class="modal large" id="modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
-      <!-- Video now uses GitHub asset name -->
-      <video src="Kiss of the Strawberry Moon.mp4" autoplay controls playsinline></video>
+      <video
+        src="https://raw.githubusercontent.com/ifshedrawsadoor/kiss-of-the-sun-demo/main/Kiss%20of%20the%20Sun%20Strawberry%20Moon.mp4"
+        autoplay
+        controls
+        playsinline
+      ></video>
     </div>
   </div>
 
@@ -285,17 +276,16 @@
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Origin Story Audio</div>
     <div class="modal-content">
-      <!-- Audio now uses GitHub asset name -->
       <audio src="Origin Story.mp3" autoplay controls></audio>
     </div>
   </div>
 
-  <!-- Audio Modal 2: RX (points to RX.mp4 as provided) -->
+  <!-- Audio Modal 2: RX -->
   <div class="modal audio" id="modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">RX Audio</div>
     <div class="modal-content">
-      <audio src="RX.mp4" autoplay controls></audio>
+      <audio src="RX.mp3" autoplay controls></audio>
     </div>
   </div>
 
@@ -303,7 +293,6 @@
   <div class="modal poem-modal" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content poem-img-modal">
-      <!-- Poem image now uses GitHub asset name -->
       <img src="Poem.png" alt="Poem" />
     </div>
   </div>
@@ -313,13 +302,12 @@
     const modals = document.querySelectorAll('.modal');
     const backdrop = document.querySelector('.modal-backdrop');
 
-    hotspots.forEach(hs => hs.addEventListener('click', function(e){
+    hotspots.forEach(hs => hs.addEventListener('click', function(){
       modals.forEach(m => m.style.display='none');
       backdrop.style.display='block';
       document.getElementById(hs.dataset.modal).style.display='block';
       hs.classList.add('visited');
 
-      // Pause any playing media first
       modals.forEach(m => {
         let v = m.querySelector('video');
         let a = m.querySelector('audio');
@@ -327,17 +315,16 @@
         if (a) a.pause();
       });
 
-      // Then play relevant media in active modal
       let activeModal = document.getElementById(hs.dataset.modal);
       let v = activeModal.querySelector('video');
       let a = activeModal.querySelector('audio');
 
       if(v){
-        v.currentTime=0;
+        v.currentTime = 0;
         v.play().catch(()=>{});
       }
       if(a){
-        a.currentTime=0;
+        a.currentTime = 0;
         a.play().catch(()=>{});
       }
     }));
