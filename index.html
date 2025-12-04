@@ -33,7 +33,7 @@
     }
 
     .frame-outer + .frame-outer {
-      margin-top: -32px; /* tighten vertical gap between sections */
+      margin-top: -32px;
     }
 
     .hotspot-bg-animate-container {
@@ -132,6 +132,31 @@
       .hotspot.h1, .hotspot.h2, .hotspot.h3, .hotspot.h4 {
         top: calc(100% - 54px);
       }
+    }
+
+    /* TOOLTIP STYLES */
+    .hotspot-label {
+      position: absolute;
+      bottom: 70px;   /* above the hotspot circle */
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffffee;
+      color: var(--classic-blue);
+      font-family: "house-of-cards", serif;
+      font-size: 20px;
+      padding: 6px 10px 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 4;
+    }
+
+    .hotspot:hover .hotspot-label {
+      opacity: 1;
+      transform: translate(-50%, -4px);
     }
 
     /* MODALS */
@@ -279,15 +304,19 @@
       <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="strawberry-modal1">
           <span class="pulse"></span>
+          <span class="hotspot-label">Kiss of the Strawberry Moon Video</span>
         </button>
         <button class="hotspot h2" data-modal="strawberry-modal2">
           <span class="pulse"></span>
+          <span class="hotspot-label">Origin Story</span>
         </button>
         <button class="hotspot h3" data-modal="strawberry-modal3">
           <span class="pulse"></span>
+          <span class="hotspot-label">RX</span>
         </button>
         <button class="hotspot h4" data-modal="strawberry-modal4">
           <span class="pulse"></span>
+          <span class="hotspot-label">The Poem</span>
         </button>
       </div>
     </div>
@@ -308,15 +337,19 @@
       <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="cazimi-modal1">
           <span class="pulse"></span>
+          <span class="hotspot-label">Kiss of the Cazimi Video</span>
         </button>
         <button class="hotspot h2" data-modal="cazimi-modal2">
           <span class="pulse"></span>
+          <span class="hotspot-label">The Ritual</span>
         </button>
         <button class="hotspot h3" data-modal="cazimi-modal3">
           <span class="pulse"></span>
+          <span class="hotspot-label">Symbolism</span>
         </button>
         <button class="hotspot h4" data-modal="cazimi-modal4">
           <span class="pulse"></span>
+          <span class="hotspot-label">History</span>
         </button>
       </div>
     </div>
@@ -337,15 +370,19 @@
       <div class="hotspots-absolute">
         <button class="hotspot h1" data-modal="solstice-modal1">
           <span class="pulse"></span>
+          <span class="hotspot-label">Kiss of the Solstice Video</span>
         </button>
         <button class="hotspot h2" data-modal="solstice-modal2">
           <span class="pulse"></span>
+          <span class="hotspot-label">Active Ingredients</span>
         </button>
         <button class="hotspot h3" data-modal="solstice-modal3">
           <span class="pulse"></span>
+          <span class="hotspot-label">For Best Results</span>
         </button>
         <button class="hotspot h4" data-modal="solstice-modal4">
           <span class="pulse"></span>
+          <span class="hotspot-label">Coda</span>
         </button>
       </div>
     </div>
