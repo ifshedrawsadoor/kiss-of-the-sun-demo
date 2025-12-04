@@ -134,31 +134,40 @@
       }
     }
 
-    /* MORE DRAMATIC TOOLTIP */
+    /* MORE DRAMATIC, ANIMATED TOOLTIP */
     .hotspot-label {
       position: absolute;
-      bottom: 80px;
+      bottom: 86px;
       left: 50%;
       transform: translateX(-50%);
       background: #ffffffee;
       color: var(--classic-blue);
       font-family: "house-of-cards", serif;
-      font-size: 22px;
-      letter-spacing: 0.05em;
-      padding: 8px 16px 6px 16px;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      padding: 10px 20px 8px 20px;
       border-radius: 999px;
       white-space: nowrap;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.32);
       border: 2px solid var(--classic-blue);
+      text-transform: uppercase;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
+      transform-origin: center bottom;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
       z-index: 4;
+    }
+
+    @keyframes labelWobble {
+      0%   { transform: translate(-50%, -10px) scale(1); }
+      50%  { transform: translate(-50%, -14px) scale(1.03); }
+      100% { transform: translate(-50%, -10px) scale(1); }
     }
 
     .hotspot:hover .hotspot-label {
       opacity: 1;
-      transform: translate(-50%, -6px);
+      transform: translate(-50%, -10px) scale(1.02);
+      animation: labelWobble 0.6s ease-out;
     }
 
     /* MODALS */
