@@ -231,7 +231,7 @@
     <div class="hotspot-bg-animate-container" id="bg-hero-parent">
       <div class="hero-title">Kiss of the Strawberry Moon</div>
 
-      <!-- You can swap this PNG to a raw URL later if you want -->
+      <!-- Background image (local file in repo) -->
       <img
         src="Kiss of the Strawberry Moon.png"
         alt="Kiss of the Strawberry Moon"
@@ -258,12 +258,12 @@
 
   <div class="modal-backdrop"></div>
 
-  <!-- Video Modal using raw GitHub URL -->
+  <!-- Video Modal (GitHub raw URL via ?raw=true) -->
   <div class="modal large" id="modal1">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content">
       <video
-        src="https://raw.githubusercontent.com/ifshedrawsadoor/kiss-of-the-sun-demo/main/Kiss%20of%20the%20Sun%20Strawberry%20Moon.mp4"
+        src="https://github.com/ifshedrawsadoor/kiss-of-the-sun-demo/raw/main/Kiss%20of%20the%20Sun%20Strawberry%20Moon.mp4?raw=true"
         autoplay
         controls
         playsinline
@@ -271,7 +271,7 @@
     </div>
   </div>
 
-  <!-- Audio Modal 1: Origin Story -->
+  <!-- Audio Modal 1: Origin Story (your existing working setup can stay, or you can also switch to raw later) -->
   <div class="modal audio" id="modal2">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">Origin Story Audio</div>
@@ -280,16 +280,20 @@
     </div>
   </div>
 
-  <!-- Audio Modal 2: RX -->
+  <!-- Audio Modal 2: RX (GitHub raw URL via ?raw=true) -->
   <div class="modal audio" id="modal3">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-header">RX Audio</div>
     <div class="modal-content">
-      <audio src="RX.mp3" autoplay controls></audio>
+      <audio
+        src="https://github.com/ifshedrawsadoor/kiss-of-the-sun-demo/raw/main/RX.mp3?raw=true"
+        autoplay
+        controls
+      ></audio>
     </div>
   </div>
 
-  <!-- Poem Modal -->
+  <!-- Poem Modal (local image, already working) -->
   <div class="modal poem-modal" id="modal4">
     <button class="modal-close" aria-label="Close modal">&times;</button>
     <div class="modal-content poem-img-modal">
@@ -302,12 +306,13 @@
     const modals = document.querySelectorAll('.modal');
     const backdrop = document.querySelector('.modal-backdrop');
 
-    hotspots.forEach(hs => hs.addEventListener('click', function(){
-      modals.forEach(m => m.style.display='none');
-      backdrop.style.display='block';
-      document.getElementById(hs.dataset.modal).style.display='block';
+    hotspots.forEach(hs => hs.addEventListener('click', function () {
+      modals.forEach(m => m.style.display = 'none');
+      backdrop.style.display = 'block';
+      document.getElementById(hs.dataset.modal).style.display = 'block';
       hs.classList.add('visited');
 
+      // pause everything
       modals.forEach(m => {
         let v = m.querySelector('video');
         let a = m.querySelector('audio');
@@ -315,24 +320,25 @@
         if (a) a.pause();
       });
 
+      // play relevant media
       let activeModal = document.getElementById(hs.dataset.modal);
       let v = activeModal.querySelector('video');
       let a = activeModal.querySelector('audio');
 
-      if(v){
+      if (v) {
         v.currentTime = 0;
-        v.play().catch(()=>{});
+        v.play().catch(() => {});
       }
-      if(a){
+      if (a) {
         a.currentTime = 0;
-        a.play().catch(()=>{});
+        a.play().catch(() => {});
       }
     }));
 
     document.querySelectorAll('.modal-close').forEach(btn =>
-      btn.addEventListener('click', function(){
-        modals.forEach(m => m.style.display='none');
-        backdrop.style.display='none';
+      btn.addEventListener('click', function () {
+        modals.forEach(m => m.style.display = 'none');
+        backdrop.style.display = 'none';
         modals.forEach(m => {
           let v = m.querySelector('video');
           let a = m.querySelector('audio');
@@ -342,9 +348,9 @@
       })
     );
 
-    backdrop.addEventListener('click', function(){
-      modals.forEach(m => m.style.display='none');
-      backdrop.style.display='none';
+    backdrop.addEventListener('click', function () {
+      modals.forEach(m => m.style.display = 'none');
+      backdrop.style.display = 'none';
       modals.forEach(m => {
         let v = m.querySelector('video');
         let a = m.querySelector('audio');
@@ -353,16 +359,16 @@
       });
     });
 
-    window.addEventListener('scroll', function(){
+    window.addEventListener('scroll', function () {
       var parent = document.getElementById('bg-hero-parent');
-      if(window.scrollY > 48){
+      if (window.scrollY > 48) {
         parent.classList.add('hero-expand');
       } else {
         parent.classList.remove('hero-expand');
       }
     });
 
-    window.addEventListener('resize', function(){
+    window.addEventListener('resize', function () {
       modals.forEach(m => {
         let v = m.querySelector('video');
         let a = m.querySelector('audio');
